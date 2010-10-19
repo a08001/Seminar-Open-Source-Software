@@ -13,6 +13,6 @@ Code - Repositories
 
 Code-Repositories:
 
-* Google
+* Google Code
 * SourceForge
 * GitHub
