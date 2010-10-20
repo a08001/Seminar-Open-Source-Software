@@ -3,11 +3,12 @@
 ### Versionsverwaltung ###
 Ein typisches Einsatzgebiet von Versionsverwaltungssystemen befindet sich im Umfeld der Software-Entwicklung, um Quellcode an den mehrere Personen arbeiten zu organisieren. Es lassen sich die &Auml;nderungen an jeder einzelnen Datei &uuml;ber die Zeit nachverfolgen.
 Einige dieser Versionsverwaltungssysteme sind auch als Open Source Software verf&uuml;gbar.
-Ein wichtiges Merkmal der Versionsverwaltung liegt in der Koordinierung des gemeinsamen Zugriffs auf eine Datei.
-### zent###
+Ein wichtiges Merkmal der Versionsverwaltung liegt in der Koordinierung des gemeinsamen Zugriffs auf eine Datei. In der Projektarbeit zur Vorlesung Software Entwicklung wurde bereits Erfahrungen mit einem zentralen Versionsverwaltungssystem (subversion) gesammelt. Dabei sind einige Probleme in der Koordination der Zusammenarbeit entstanden, die aber durch eine Gruppen interne Absprache gelöst wurden. Durch die strikte Organisation und ein zeitnahen Abgleich mit dem Repository, wurde das Projekt über Subversion erfolgreich versioniert. 
+
 ### Git ###
 Git ist ein Open Source verteiltes Versionsverwaltungssystem, dass &uuml;ber  einen gerichteten azyklischen Graph (DAG) implementiert wird. Es werden vollst&auml;ndige Abbilder aller Dateien &uuml;bertragen und k&ouml;nnen bearbeitet werden. Damit ist jeder <code>checkout</code> gleichzeitig ein vollst&auml;ndiges Backup des gesamten Repositories. So wird die Notwendigkeit eines eigenst&auml;ndigen Servers zum Austausch der Daten umgangen. 
-Git ist kostenlos und ein Open Source verteiltes Versionsverwaltungs System,  das entwickelt wurde um alles vom kleinen Projekt bis zu sehr gro&szlig;en Projekten performant und effizent zu versionieren. 
+Git ist kostenlos und ein Open Source verteiltes Versionsverwaltungs System,  das entwickelt wurde um alles vom kleinen Projekt bis zu sehr gro&szlig;en Projekten performant und effizent zu versionieren. Die Entwicklung von Git stammt aus der Notwendigkeit eine Versionsverwaltung für den Linux-Kernel die Bitkeeper ersetzen musste. 
+
 ### Schnelleinstieg ###
 Die Grundschritte um ein Projekt zu erzeugen und unter Versionsverwaltung zu stellen, werden im folgenden beschrieben. Unter der Projektseite <code>http://git-scm.com</code> k&ouml;nnen die Git Release bezogen werden. Neben den Unix-Programm, existiert auch eine Version f&uuml;r Windows. Damit wird die <code>git</code> Befehlskommando verf&uuml;gbar. Der erste Schritt besteht in der Einrichtung eines Repositories, also eines Verzeichnis das unter Versionsverwaltung gestellt wird. Dazu wird der Befehl <code>git init</code> aus dem Verzeichnis das unter Versionsverwaltung gestellt werden soll ausgef&uuml;hrt. Mit dem Befehl <code>git add .</code> werden alle Dateien aus dem Verzeichnis zur Versionsverwaltung zugef&uuml;gt. Es k&ouml;nnen nun gezielt Dateien mit in die Versionsverwaltung aufgenommen werden, indem hinter dem add der Dateiname oder Dateimasken angegeben werden.&Uml;ber den Befehl <code>git commit %lt;Dateimaske%gt; -m "Kommentar"</code> k&ouml;nnen die Inhalte aktualisert werden. Nat&uuml;rlcih lassen sich &uuml;ber den Befehl `git rm &lt;Dateimanske&gt;` Dateien aus der Versionsverwaltung wieder entfernen.
 Damit ist der erste schnelle Einstieg erfolgt. Es ist ein neues Repositories erzeugt, neue Dateien wurden zugef&uuml;gt und die Inhalte das erste Git &uuml;bertragen. Dies entspricht auch der arbeitsweise eines eines lokalen oder zentralen Versionsverwaltungssystem. Der neue Ansatz liegt eines verteilten Versionsverwaltungssystem ist oben bereits angesprochen wurden. Es werden nicht mehr die textuellen Differenzen zweier Version abgespeichert, sondern eine komplette Kopie der Arbeitsversion angelegt. Auf den ersten Blick erscheint das als Verschwendung von Ressourcen, es wird sich aber zeigen, dass dieser Ansatz sehr flexibel ist und &uuml;ber die M&ouml;glichkeiten von zentralen Systemen, wie Subversion, weitere Verbesserungen anbietet.
@@ -30,15 +31,17 @@ Das funktioniert nur dann, wenn Schreibrechte f&uuml;r das jeweilige Repository 
 In den meisten Versionsverwaltungssystemen existiert die M&uml;glichkeit Markierungen (Tags) zu setzen. Die ist sehr hilfreich, um Programmversionen explizit zu spezifizieren. In Git kann man &uuml;ber den Befehl `git tag` diese Markierungen anzeigen lassen und &uuml;ber den Parameter `git tag -a v &gt;version&lt;` solche Markierungen setzen. Dies ist sogar nachtr&auml;glich m&uml;glich.
 
 ### Git Branching ###
-In dem verteilten Versionverwaltungssystem Git wird intern ein gerichteter azyklischen Graph genutzt, um die einzelnen Sichten auf das Dateisystem zu verwalten. Somit l&auml;&szlig;t sich sehr elegant das erstellen von Zweigen (Branching), um von der Hauptlinie abzuzweigen erreichen. Es wird ein Pr&uuml;fsumme &uuml;ber das erzeugte Commit(Snapshot) &uuml;ber eine Einwegefunktion (Hashcode) als Datei mit dem 40 Zeichen langen SHA-1 Code. Andere Versionsverwaltungssystem bilden die komplette Struktur aller Dateien als echte physikalische Kopie der Abzweigepunkte und ben&uml;tigen dadurch wesentlich mehr Ressource.
-Dieses Branching wird von Git als leistungsstarke Erweiterung gesehen. Es wird ermutigt, viele Branches zu erzeugen. Jedes Teilproblem kann ein eigener Branch sein, der unabh&auml;nig von den anderen Zeigen bearbeitet werden kann. Die L&uml;sung kann seperat in den Master als eigenst&auml;ndiger Branch gef&uuml;hrt werden.
+In dem verteilten Versionverwaltungssystem Git wird intern ein gerichteter azyklischen Graph genutzt, um die einzelnen Sichten auf das Dateisystem zu verwalten. Somit l&auml;&szlig;t sich sehr elegant das erstellen von Zweigen (Branching), um von der Hauptlinie abzuzweigen erreichen. Es wird ein Pr&uuml;fsumme &uuml;ber das erzeugte Commit(Snapshot) &uuml;ber eine Einwegefunktion (Hashcode) als Datei mit dem 40 Zeichen langen SHA-1 Code  angelegt. Andere Versionsverwaltungssystem bilden die komplette Struktur aller Dateien als echte physikalische Kopie der Abzweigepunkte und ben&uml;tigen dadurch wesentlich mehr Ressource.
+Dieses Branching wird von Git als leistungsstarke Erweiterung gesehen. Es wird ermutigt, viele Branches zu erzeugen. Jedes Teilproblem kann ein eigener Branch sein, der unabh&auml;nig von den anderen Zweigen bearbeitet werden kann. Die L&uml;sung kann seperat in den Master als eigenst&auml;ndiger Branch gef&uuml;hrt werden.
 Zus&auml;tzlich kann durch den Befehl `git merge &gt;branch&lt;` der Zweig wieder mit in die Hauptlinie zur&uuml;ck &uuml;berf&uuml;hrt werden und auf wunsch &uuml;ber den Befehl `git branch -d &gt;branch&lt;` kann der erzeugte Verzweigungspunkt wieder entfernt werden.
 
-
- 
-
-### Social Coding ###
 ### GitHub ###
+Neben dem Web Protal `www.github.com` wird von GitHub auch die Standalone Lösung `GitHubFI`, das steht für Firewall Install, und spezielle Seminare angeboten. GitGub selbst hat als Slogang `social coding` und stellt über das Web Portal die Nutzung von Git zur Verfügung. Dieses Seminar wurde als kostenloses Open Source Git Repository auf GitHub angelegt und für die Öffentlichkeit freigegeben. Somit kann an der Seminar arbeit über Open Source jeder beitragen und steht damit als Open Source Projekt selbst zur Verfügung. Ohne speziell Werbung für diese Projekt auszuüben, ist die Wahrscheinlichkeit andere Mitarbeiter zu erreichen gering.
+
+`Social Codeing` bezeichnet die Arbeitsweise von GitHub, hierbei steht der Nutzer und nicht das Projekt im Vordergrund. GitHub ist ein Portal an dem sich Entwickler treffen können um an verschiedenen Projekten zu arbeiten. Dabei kann man selbst ein Projekt anlegen, Code veröffentlichen und an anderen Projekte mitarbeiten. Ein Vorteil der sich aus der internen Verwendung von Git als Versionverwaltungssystem ergibt, besteht in dem Erstellen und Wiedervereinen von Abzweigungen(Forks).
+
+Das Projekt der DHBW Stuttgart Campus Horb wurde als Open Source Projekt auf GitHub angelegt. Dazu wurde ein Benutzer angelegt und ein initiales Projekt angelegt. Es wurde ein Git Tool von `git-scm.com` verwendet. Anschließend wurde das git mit `git init` angelegt und über die Openssh Funktion wurde ein Schlüsselpaar nach dem RSA Standard angelegt. Der öffentliche Schlüssel wurde über die Administrationsseite von GitHub dem Benutzerprofil zugefügt. Der Benutzename und die eMail Adresse wurden über den `git config` Befehl abgelegt. Nun wurde noch die erste Versionen der Arbeit unter Versionskontrolle gestellt. Nachdem die Versionen in das Master Repository übernommen wurden, kann nun über das GitHub Portal direkt neue Nutzer an dem Projekt arbeiten. Dazu ist nur eine kostenloses Anmeldung des neuen Nutzers bei GitHub notwendig. Nun kann über das Portal durch as Repository 
+
 
 Hosting f&uuml;r Open Source Projekte:
 
@@ -67,7 +70,6 @@ Hosting f&uuml;r Open Source Projekte:
 * TinyMCE
 * Greasemonkey
 * und viele mehr
-
 
 
 
